@@ -76,4 +76,8 @@ public class problem10_CircularLinkedList {
         return fastPointer;
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }

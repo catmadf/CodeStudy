@@ -4,11 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * tag: string
  * @author 烛影鸾书
  * @date 2020/5/21
  * @copyright© 2020
  */
-public class LongestSubstringOfNoRepeatingChar {
+public class P3_LongestSubstringOfNoRepeatingChar {
 
     public static int lengthOfLongestSubstring(String s) {
         if (s == null) return 0;

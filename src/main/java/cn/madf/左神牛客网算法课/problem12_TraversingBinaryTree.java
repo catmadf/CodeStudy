@@ -107,4 +107,34 @@ public class problem12_TraversingBinaryTree {
         }
         System.out.println();
     }
+
+    /**
+     * 先序遍历是"中左右"
+     * 后序遍历是"左右中"
+     * 将先序遍历改成"中右左" 再倒序输出
+     * @param node node
+     */
+    public static void posOrderNotRecur(Node node) {
+        System.out.print("posOrder: ");
+        if (node != null) {
+            Stack<Node> stack = new Stack<>();
+            Stack<Node> help = new Stack<>();
+            Node cur = node;
+            stack.add(cur);
+            while (!stack.isEmpty()) {
+                cur = stack.pop();
+                help.push(cur);
+                if (cur.left != null) {
+                    stack.push(cur.left);
+                }
+                if (cur.right != null) {
+                    stack.push(cur.right);
+                }
+            }
+            while (!help.isEmpty()) {
+                System.out.print(help.pop().data + " ");
+            }
+        }
+        System.out.println();
+    }
 }

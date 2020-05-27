@@ -27,7 +27,7 @@ public class problem12_TraversingBinaryTree {
             return;
         }
 
-        System.out.println(node.data + " ");
+        System.out.print(node.data + " ");
         preOrderRecur(node.left);
         preOrderRecur(node.right);
     }
@@ -38,7 +38,7 @@ public class problem12_TraversingBinaryTree {
         }
 
         preOrderRecur(node.left);
-        System.out.println(node.data + " ");
+        System.out.print(node.data + " ");
         preOrderRecur(node.right);
     }
 

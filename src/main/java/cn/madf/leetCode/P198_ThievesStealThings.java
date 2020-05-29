@@ -82,7 +82,7 @@ public class P198_ThievesStealThings {
             first = second;
             second = temp;
         }
-        return temp;
+        return second;
     }
 
     public static void main(String[] args) {

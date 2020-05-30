@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class BigRootHeap {
 
     private int[] array;
-    private int validLength;
     private int capacity;
     private int heapSize;
 
@@ -20,7 +19,6 @@ public class BigRootHeap {
 
     public BigRootHeap(int[] array) {
         this.capacity = array.length;
-        this.validLength = array.length;
         this.array = new int[this.capacity];
         System.arraycopy(array, 0, this.array, 0, capacity);
 

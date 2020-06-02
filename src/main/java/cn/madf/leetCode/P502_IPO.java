@@ -31,7 +31,7 @@ import java.util.PriorityQueue;
  * <p>
  * 首先要保证每次选项目时资金充足，即 w>=c ；其次，在满足第一个条件基础上保证 p 最大。
  * 相当于每次选出能够做的项目，在这些项目中找到收益最多的。细心的话可以发现堆能够满足我们的需求。
- *
+ * <p>
  * 看了官方题解后发现可以加速代码：即会存在一种情况，第一次从小根堆取出所有能做的项目时，此时项目个数就已经大于等于K
  *
  * @author 烛影鸾书
@@ -51,10 +51,28 @@ public class P502_IPO {
     }
 
     public int findMaximizedCapital(int k, int W, int[] Profits, int[] Capital) {
+        boolean speed = true;
+        for (int c : Capital) {
+            if (W < c) {
+                speed = false;
+                break;
+            }
+        }
         /* 用一个小根堆来存放项目，每次pop出cost最小的 */
         PriorityQueue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(node -> node.cost));
         /* 用一个大根堆来存放项目，接收从上面那个pop出的项目，然后pop出收益最大的项目来做 */
         PriorityQueue<Node> maxHeap = new PriorityQueue<>((node1, node2) -> node2.profit - node1.profit);
+
+        /* 若所有项目都可做，则只需要选最大利润的k个即可 */
+        if (speed) {
+            for (int i = 0; i < Profits.length; i++) {
+                maxHeap.add(new Node(Profits[i], Capital[i]));
+            }
+            for (int i = 0; i < k; i++) {
+                W+=maxHeap.poll().profit;
+            }
+            return W;
+        }
 
         for (int i = 0; i < Profits.length; i++) {
             minHeap.add(new Node(Profits[i], Capital[i]));
@@ -69,7 +87,7 @@ public class P502_IPO {
             if (maxHeap.isEmpty()) {
                 return W;
             }
-            W+=maxHeap.poll().profit;
+            W += maxHeap.poll().profit;
             k++;
         }
 

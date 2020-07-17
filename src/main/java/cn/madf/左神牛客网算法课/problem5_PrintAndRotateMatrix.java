@@ -1,8 +1,8 @@
 package cn.madf.左神牛客网算法课;
 
-import sun.rmi.server.MarshalInputStream;
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 1.打印矩阵
@@ -25,32 +25,41 @@ public class problem5_PrintAndRotateMatrix {
         if (matrix.length == 0) {
             return;
         }
+        List<Integer> arrList = new ArrayList<>(matrix.length*matrix[0].length);
         int tR = 0;
         int tC = 0;
         int dR = matrix.length - 1;
         int dC = matrix[0].length - 1;
         while (dR >= tR && dC >= tC) {
-            printEdge(matrix, tR++, tC++, dR--, dC--);
+            printEdge(matrix, tR++, tC++, dR--, dC--, arrList);
         }
         System.out.println();
+        int[] res = new int[arrList.size()];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = arrList.get(i);
+        }
     }
 
-    public static void printEdge(int[][] matrix, int tR, int tC, int dR, int dC) {
+    public static void printEdge(int[][] matrix, int tR, int tC, int dR, int dC, List<Integer> list) {
         int i = tR + 1;
         int j = tC;
         while (j <= dC) {
             System.out.print(matrix[tR][j++] + " ");
+            list.add(matrix[tR][j++]);
         }
         while (i <= dR) {
             System.out.print(matrix[i++][dC] + " ");
+            list.add(matrix[i++][dC]);
         }
         i = dR - 1;
         j = dC - 1;
         while (j >= tC && tR != dR) {
             System.out.print(matrix[dR][j--] + " ");
+            list.add(matrix[dR][j--]);
         }
         while (i > tR && tC != dC) {
             System.out.print(matrix[i--][tC] + " ");
+            list.add(matrix[i--][tC]);
         }
     }
 

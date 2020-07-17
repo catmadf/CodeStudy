@@ -15,7 +15,7 @@ public class ThreadLocalExample {
 
         new Thread(()->{
             threadLocal1.set(1);
-            threadLocal2.set(1);
+            threadLocal2.set(2);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -26,8 +26,8 @@ public class ThreadLocalExample {
         }, "thread1").start();
 
         new Thread(()->{
-            threadLocal1.set(2);
-            threadLocal2.set(2);
+            threadLocal1.set(3);
+            threadLocal2.set(4);
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

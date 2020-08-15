@@ -1,5 +1,8 @@
 package cn.madf.左神牛客网算法课;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -20,7 +23,23 @@ public class problem12_TraversingBinaryTree {
         public int data;
         public Node left;
         public Node right;
+
+        Node(){
+
+        }
+
+        Node(int data){
+            this.data = data;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(data);
+        }
     }
+
+    private static Deque<Node> stack = new LinkedList<>();
+    private static Queue<Node> queue = new LinkedList<>();
 
     public static void preOrderRecur(Node node) {
         if (node == null) {
@@ -28,6 +47,7 @@ public class problem12_TraversingBinaryTree {
         }
 
         System.out.print(node.data + " ");
+        queue.add(node);
         preOrderRecur(node.left);
         preOrderRecur(node.right);
     }
@@ -80,7 +100,7 @@ public class problem12_TraversingBinaryTree {
      * -中序遍历输出顺序为：4 2 5 1 6 3 7
      * -根据栈先进后出的特性，可以初步想象一下： 4 应该是后进栈的 ...
      * -但是能不能让 7 最先进栈呢？ 很明显不用递归，当我们遍历到 7 并没有办法回到父结点，因此不行。
-     * -考虑一个3结点最小子树的遍历过程，当 cur 存在左孩子和右孩子时，我们可以同时获取到左孩子和右孩子，
+     * -考虑一个 3 结点最小子树的遍历过程，当 cur 存在左孩子和右孩子时，我们可以同时获取到左孩子和右孩子，
      * 并且假设cur即将进行下移，此时若不将cur压栈保留，那cur在移动前指向的结点(父结点)将获取不到。
      * 故而此时应当将cur即父结点压栈，
      * -接下来考虑该压左孩子还是右孩子。以一个具体的例子来设想，假设先前压进栈的是结点2。
@@ -136,5 +156,16 @@ public class problem12_TraversingBinaryTree {
             }
         }
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(1);
+        root.left = new Node(2);
+        root.right = new Node(3);
+        root.left.left = new Node(4);
+        root.left.right = new Node(5);
+        root.right.left = new Node(6);
+        preOrderRecur(root);
+        System.out.println(queue);
     }
 }

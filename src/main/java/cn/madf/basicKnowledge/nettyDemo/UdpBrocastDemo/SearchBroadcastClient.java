@@ -17,11 +17,16 @@ import io.netty.resolver.dns.NoopDnsQueryLifecycleObserverFactory;
 public class SearchBroadcastClient {
 
     private static boolean register = false;
+    private static final int port = 25052;
 
     private final EventLoopGroup group;
     private final Bootstrap bootstrap;
 
-    public SearchBroadcastClient(int remotePort) {
+    public static void main(String[] args) {
+
+    }
+
+    public SearchBroadcastClient() {
         this.group = new NioEventLoopGroup();
         this.bootstrap = new Bootstrap();
         /* 绑定NioDatagramChannel数据报通道，udp */
@@ -37,10 +42,12 @@ public class SearchBroadcastClient {
                 });
     }
 
-    public void run() throws InterruptedException {
-        Channel channel = this.bootstrap.bind(0).sync().channel();
+    public void run(int remotePort) throws InterruptedException {
+        Channel channel = this.bootstrap.bind(port).sync().channel();   // bind 0 代表每次发送会随机选取一个端口
         while (!register) {
-            channel.writeAndFlush(new NoticeHelpPacket());
+            NoticeHelpPacket notice = new NoticeHelpPacket(remotePort);
+            notice.setFromPort(port);
+            channel.writeAndFlush(notice);
             Thread.sleep(3000);
         }
     }

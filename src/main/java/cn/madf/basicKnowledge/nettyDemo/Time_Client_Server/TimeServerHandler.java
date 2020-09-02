@@ -17,6 +17,7 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
 
         final ChannelFuture f = ctx.writeAndFlush(time);
+        System.out.println(System.currentTimeMillis() + " server channelActive");
         f.addListener((ChannelFutureListener) future -> {
             assert f == future;
             /* 操作完成时关闭通道 */
@@ -26,6 +27,7 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        System.out.println(System.currentTimeMillis() + " server channelRead");
         super.channelRead(ctx, msg);
     }
 

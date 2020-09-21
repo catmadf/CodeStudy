@@ -7,7 +7,7 @@ public class TestDoubleColon {
 
     private String name;
 
-    TestDoubleColon(String name){
+    private TestDoubleColon(String name){
         this.name = name;
     }
 
@@ -17,6 +17,6 @@ public class TestDoubleColon {
         System.out.println(bean.name);
     }
 }
-interface InterfaceExample{
+interface InterfaceExample {
     TestDoubleColon create(String name);
 }

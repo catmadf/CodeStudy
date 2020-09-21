@@ -29,10 +29,9 @@ public class HeapSort {
     private static void heapify(int[] arr, int index, int heapSize) {
         /* 维护index为根节点的子树是一个大根堆，与heapInsert不同，heapify从根往下遍历 */
         int left = (index << 1) + 1; // 左叶节点
-        int right = left + 1;
         while (left < heapSize) {
             /* 比较左右叶子节点（也有可能不存在右叶子） */
-            int largest = right < heapSize && arr[right] > arr[left] ? right : left;
+            int largest = left + 1 < heapSize && arr[left + 1] > arr[left] ? left + 1 : left;
             /* 再和父节点比较 */
             largest = arr[index] > arr[largest] ? index : largest;
             /* tips：如果largest和index相等意味着不需要再维护了 */

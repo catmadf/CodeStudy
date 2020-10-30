@@ -1,4 +1,4 @@
-package cn.madf.YmlConfig;
+package cn.madf.basicKnowledge.YmlConfig;
 
 import lombok.Data;
 

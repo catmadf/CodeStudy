@@ -1,4 +1,4 @@
-package cn.madf.LRU;
+package cn.madf.basicKnowledge.LRU;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,7 +1,4 @@
-package cn.madf.SmallSum;
-
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
-import com.sun.scenario.effect.Merge;
+package cn.madf.basicKnowledge.SmallSum;
 
 /**
  * 小和问题

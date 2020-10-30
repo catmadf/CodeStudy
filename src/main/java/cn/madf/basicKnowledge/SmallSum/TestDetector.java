@@ -1,6 +1,5 @@
-package cn.madf.SmallSum;
+package cn.madf.basicKnowledge.SmallSum;
 
-import java.io.PrintStream;
 import java.util.Arrays;
 
 /**
